@@ -4,33 +4,26 @@ import "./EC_Button.css";
 
 type ButtonProps = {
   children: React.ReactNode,
-  variant: "primary" | "secondary" | "tertiary",
+  variant?: "primary" | "secondary" | "tertiary",
   backgroundColor: string,
+  onClick?: () => void,
+  color?: string,
+  borderRadius?: string,
+  fontWeight?: string
 }
 
 const EC_Button: React.FC<ButtonProps> = ({
   children,
-  variant="primary",
   backgroundColor,
+  onClick,
+  borderRadius= "0",
+  color= "white",
+  fontWeight= "400",
   ...props
 }) => {
-  const variantStyles: Record<ButtonProps["variant"], CSSProperties> = ( {
-    primary: {
-      backgroundColor,
-      borderRadius: "10px",
-    },
-    secondary: {
-      backgroundColor,
-      borderRadius: "100px",
-    },
-    tertiary: {
-      backgroundColor,
-      color: "#D0223A",
-      fontWeight: "400",
-    }
-  })
+  
   return (
-    <button {...props} style={{ ...variantStyles[variant], backgroundColor }} className="button">♠ {children}</button>
+    <button {...props} onClick={onClick} style={{backgroundColor, borderRadius, color, fontWeight}} className="button">♠ {children}</button>
   )
 }
 
